@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'color.css' %}">
+    <title>Exemplo</title>
+</head>
+<body>
+    <h1>Exemplo template</h1>
+    <h1>Esse  o resultado: {{ calc }}</h1>
+    {% if is_true %}
+    <ul>
+        {% for person in people %}
+        <li>Esse e o {{ person }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h2>Nao ha pessoas!</h2>
+    {% endif %}
+    {% for y in yielded %}
+        <b>{{y}}</b>
+    {% endfor %}
+</body>
+</html>

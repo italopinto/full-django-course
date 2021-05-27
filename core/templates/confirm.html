@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Confirmaçao de exclusao {% endblock %}
+
+{% block content %}
+
+  <h1>Deseja proceder com a exclusao do {% if client.name %} cliente {{ client.name }} {% else %} doc ID {{ id.number }} {% endif %}?</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Apagar</button>
+  </form>
+  {% if client.name %}
+  <a href="{% url 'core:list_clients' %}">Cancelar</a>
+  {% else %}
+  <a href="{% url 'core:list_id' %}">Cancelar</a>
+  {% endif %}
+
+{% endblock %}

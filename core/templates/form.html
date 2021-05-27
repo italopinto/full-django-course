@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<!-- Esse formulario serve para o client_id e para o client -->
+    {% block title %}
+
+    Novo {% if form.name %} Cliente {% else %} Doc ID {% endif %}
+
+    {% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <!-- form.as_p make the form view use paragraphs, it will be shown verticaly -->
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+    {% if form.name %}
+    <a href="{% url 'core:list_clients' %}">Voltar</a>
+    {% else %}
+    <a href="{% url 'core:list_id' %}">Voltar</a>
+    {% endif %}
+
+{% endblock %}

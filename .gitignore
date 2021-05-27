@@ -1,0 +1,16 @@
+# vscode folder
+.vscode
+
+# venv
+venv
+
+# python configs
+*/__pycache__/
+*.pyc
+
+# database
+*.sqlite3
+
+#other things
+*.sh
+.env
