@@ -43,7 +43,7 @@ class Sale(models.Model): #-> example of one to many (foreign key) relationship
     client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL) #-> varios vendedores para um cliente
     date = models.DateTimeField(verbose_name='Data', auto_now_add=True)
     total = models.DecimalField(verbose_name='Total', max_digits=7, decimal_places=2)
-    products = models.ManyToManyField(Product, null=True, blank=True)
+    products = models.ManyToManyField(Product, blank=True)
 
     class Meta:
         verbose_name = 'Vendedor'
