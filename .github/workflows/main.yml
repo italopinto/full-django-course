@@ -15,6 +15,14 @@ jobs:
         python-version: [3.8]
 
     steps:
+    - name: Exporting variables
+    - shell: bash
+      env:
+        SUPER_SECRET: ${{ secrets.SECRET_KEY }}
+        OTHER_SECRET: ${{ secrets.DEBUG}}
+      run: |
+        export SECRET_KEY="$SUPER_SECRET"
+        export DEBUG="$OTHER_SECRET"
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
