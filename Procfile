@@ -1,1 +1,1 @@
-web: gunicorn clients.wsgi --workers=3 --log-file -
+web: gunicorn clients.wsgi 
