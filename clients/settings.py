@@ -21,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY') or os.environ.get('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY') or os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool) or os.environ.get('DEBUG')
+DEBUG = config('DEBUG', default=False, cast=bool) or os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['full-django-course.herokuapp.com', '0.0.0.0']
+try:
+    ALLOWED_HOSTS = list(os.getenv("DJANGO_ALLOWED_HOSTS")) # this is the config of DIGITAL OCEAN
+except TypeError:
+    ALLOWED_HOSTS = ['full-django-course.herokuapp.com', '0.0.0.0']
 
 
 # Application definition
