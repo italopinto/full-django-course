@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Logout {% endblock %}
+
+{% block content %}
+
+
+  <div class="alert alert-success">
+    <div class="container-fluid p-5">
+      <h1 class="display-4 fw-bold">Sessão encerrada!</h1>
+      <hr>
+      <p class="col-md-8 fs-4">Log out realizado com sucesso.</p>
+      <p>
+        <a class="btn btn-warning btn-lg m-2" href="{% url 'login' %}"><i class="fa fa-user"></i> Fazer login novamente </a>
+      </p>
+    </div>
+  </div>
+    
+
+{% endblock %}
+
