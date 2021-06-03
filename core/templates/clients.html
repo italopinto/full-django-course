@@ -3,23 +3,54 @@
 {% block title %} Clientes {% endblock %}
 
 {% block content %}
-<h1>Clientes</h1>
 
-{% if user.is_authenticated %}
-<p>Seja bem-vindo {{ user.username }}</p>
-<a href="{% url 'logout' %}">Logout</a> | <a href="{% url 'core:list_id' %}">Ver os doc IDs</a>
-{% else %}
-<a href="{% url 'login' %}">Login</a>
-{% endif %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
 
-    <ul>
-    {% for client in clients %}
-        <li>
-            <p>{{ client }}</p> <a href="{% url 'core:update_client' client.id %}">Editar</a> | <a href="{% url 'core:delete_client' client.id %}">Apagar</a>
-        </li>
-    {% endfor %}
-    </ul>
-{% if user.is_authenticated %}
-<a href="{% url 'core:new_client' %}">Novo cliente</a>
-{% endif %}
+        <div class="row">
+            <div class="d-sm-flex">
+                <div class="col-9">
+                    <h1 class="display-4 mb-0 fw-bold">Clientes</h1>
+                </div>
+                <div class="col-3 ">
+                    {% if user.is_authenticated %}
+                        <div class="d-flex justify-content-center align-items-center">
+                            <p class="fs-4 m-0"> Bem-vindo {{ user.username }} </p>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a class="btn btn-secondary btn-sm mb-2 me-2" href="{% url 'core:list_id' %}">Ver doc IDs</a>
+                            <a class="btn btn-danger btn-sm mb-2" href="{% url 'logout' %}">Log out</a>
+                        </div>
+                    {% else %}
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a class="btn btn-success m-3" href="{% url 'login' %}">Log in</a>
+                        </div>
+                    {% endif %}
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <ul class="list-group list-group-numbered d-flex">
+            {% for client in clients %}
+                <li class="list-group-item d-flex justify-content-evenly align-items-center">
+                    <p class="flex-grow-1 m-1">{{ client }}</p>
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-info m-1" href="{% url 'core:update_client' client.id %}">Editar</a>
+                        <a class="btn btn-danger m-1" href="{% url 'core:delete_client' client.id %}">Excluir</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+            {% if user.is_authenticated %}
+            <div class="d-flex justify-content-start align-items-center">
+                <a class="btn btn-primary my-3" href="{% url 'core:new_client' %}">Cadastrar novo cliente</a>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

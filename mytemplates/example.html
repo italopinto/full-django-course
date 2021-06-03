@@ -24,5 +24,26 @@
     {% for y in yielded %}
         <b>{{y}}</b>
     {% endfor %}
+
+    {# Template do bootstrap usado nas views #}
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary">Left</button>
+    <button type="button" class="btn btn-primary">Middle</button>
+    <button type="button" class="btn btn-primary">Right</button>
+  </div>
+  
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Clientes</h1>
+      <p class="col-md-8 fs-4">Logout realizado com sucesso.</p>
+      <p>
+        <button type="submit" class="btn btn-primary">Primary</button>
+        <button class="btn btn-danger" type="submit">Apagar</button>
+        <a class="btn btn-success btn-lg" href="{% url 'login' %}"><i class="fa fa-user"></i> Fazer login novamente </a>
+      </p>
+    </div>
+  </div>
+
 </body>
 </html>

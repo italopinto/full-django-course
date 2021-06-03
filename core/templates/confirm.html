@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 
-{% block title %} Confirmaçao de exclusao {% endblock %}
+{% block title %} Confirmação de exclusão {% endblock %}
 
 {% block content %}
 
-  <h1>Deseja proceder com a exclusao do {% if client.name %} cliente {{ client.name }} {% else %} doc ID {{ id.number }} {% endif %}?</h1>
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5 text-center">
+    <h1 class="display-6 mb-5 fw-bold">
+      Excluir {% if client.name %} cliente {{ client.name }} {% else %} doc ID {{ id.number }} {% endif %}?
+    </h1>
 
-  <form method="POST">
-    {% csrf_token %}
-    <button type="submit">Apagar</button>
-  </form>
-  {% if client.name %}
-  <a href="{% url 'core:list_clients' %}">Cancelar</a>
-  {% else %}
-  <a href="{% url 'core:list_id' %}">Cancelar</a>
-  {% endif %}
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="btn-group" role="group">
+          <button class="btn btn-danger" type="submit">Excluir</button>
+          {% if client.name %}
+            <a class="btn btn-primary" href="{% url 'core:list_clients' %}">Cancelar</a>
+          {% else %}
+            <a class="btn btn-primary" href="{% url 'core:list_id' %}">Cancelar</a>
+          {% endif %}
+      </div>
+      </div>
+    </form>
+
+  </div>
+</div>
 
 {% endblock %}

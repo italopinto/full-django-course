@@ -1,23 +1,37 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
 <!-- Esse formulario serve para o client_id e para o client -->
     {% block title %}
-
-    Novo {% if form.name %} Cliente {% else %} Doc ID {% endif %}
-
+        Novo {% if form.name %} Cliente {% else %} Doc ID {% endif %}
     {% endblock %}
 
 {% block content %}
 
-    <form method="POST">
-        {% csrf_token %}
-        <!-- form.as_p make the form view use paragraphs, it will be shown verticaly -->
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
-    </form>
-    {% if form.name %}
-    <a href="{% url 'core:list_clients' %}">Voltar</a>
-    {% else %}
-    <a href="{% url 'core:list_id' %}">Voltar</a>
-    {% endif %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        {% if update %} 
+            <h1 class="display-5 mb-4 fw-bold">
+                Atualização de {% if form.name %} dados do cliente {% else %} doc ID {% endif %}
+            </h1>
+        {% else %}
+            <h1 class="display-5 mb-4 fw-bold">
+                Novo {% if form.name %} cliente {% else %} doc ID {% endif %}
+            </h1>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <!-- form.as_p make the form view use paragraphs, it will be shown verticaly -->
+            {{ form|bootstrap }}
+            <div class="btn-group mt-4" role="group">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                {% if form.name %}
+                        <a class="btn btn-danger" href="{% url 'core:list_clients' %}">Cancelar</a>
+                {% else %}
+                        <a class="btn btn-danger" href="{% url 'core:list_id' %}">Cancelar</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
 
 {% endblock %}
