@@ -26,8 +26,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
-    path('login/', auth_views.LoginView.as_view(), name='login'), #-> o django ja sabe que e uma view
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'), #-> o django ja sabe que e uma view
 ] 
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # -> Return a URL pattern for serving files in debug mode
 # dessa forma esta-se concatenando as urls existentes, novas url'patterns' dos arquivos estaticos, nesse caso

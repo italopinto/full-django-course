@@ -41,6 +41,7 @@ def update_client(request, id):
 
     context = {
         'form': form,
+        'update': 1,
     }
     return render(request, 'form.html', context=context)
 
@@ -98,6 +99,7 @@ def update_id(request, id):
 
     context = {
         'form': form,
+        'update': 1,
     }
     return render(request, 'form.html', context=context)
 
