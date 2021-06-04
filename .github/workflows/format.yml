@@ -3,15 +3,16 @@ name: Formating test
 on: [push, pull_request]
 
 jobs:
-  runs-on: ubuntu-latest
-  strategy:
-    matrix:
-      python-version: [3.8]
-  steps:
-  - name: 'Checking the black format'
-  - uses: RojerGS/python-black-check@master
-  - with:
-      line-length: '79'
-      path: '.'
-      exclude: '(/*.html|/*.md|/*.txt|/*.yml)'
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - name: 'Checking the black format'
+    - uses: RojerGS/python-black-check@master
+    - with:
+        line-length: '79'
+        path: '.'
+        exclude: '(/*.html|/*.md|/*.txt|/*.yml)'
     
