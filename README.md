@@ -1,4 +1,5 @@
 ![workflow name](https://github.com/italopinto/full-django-course/actions/workflows/main.yml/badge.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 
 # full-django-course
