@@ -13,6 +13,5 @@ jobs:
   - with:
       line-length: '79'
       path: '.'
-      include: '/(client|core)/'
-      exclude: '(/*.html|/*.mo|/*.po|/*.png|/*.rst)'
+      exclude: '(/*.html|/*.md|/*.txt|/*.yml)'
     
