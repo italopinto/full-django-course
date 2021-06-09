@@ -8,25 +8,23 @@
     <div class="container-fluid py-5">
 
         <div class="row">
-            <div class="d-sm-flex">
-                <div class="col-9">
-                    <h1 class="display-4 mb-0 fw-bold">Clientes</h1>
+            <div class="display-5 fw-bold lh-1 mb-3">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <h1 class="display-4 fw-bold lh-1 mb-3">Clientes</h1>
                 </div>
-                <div class="col-3 ">
-                    {% if user.is_authenticated %}
-                        <div class="d-flex justify-content-center align-items-center">
-                            <p class="fs-4 m-0"> Bem-vindo {{ user.username }} </p>
-                        </div>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a class="btn btn-secondary btn-sm mb-2 me-2" href="{% url 'core:list_id' %}">Ver doc IDs</a>
-                            <a class="btn btn-danger btn-sm mb-2" href="{% url 'logout' %}">Log out</a>
-                        </div>
-                    {% else %}
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a class="btn btn-success m-3" href="{% url 'login' %}">Log in</a>
-                        </div>
-                    {% endif %}
-                </div>
+                {% if user.is_authenticated %}
+                    <div class="col-lg-7 text-center text-lg-start">
+                        <p class="lead"> Bem-vindo {{ user.username|capfirst }} </p>
+                    </div>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
+                        <a class="btn btn-secondary btn-sm px-4 gap-3" href="{% url 'core:list_id' %}">Ver doc IDs</a>
+                        <a class="btn btn-danger btn-sm px-4" href="{% url 'logout' %}">Log out</a>
+                    </div>
+                {% else %}
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
+                        <a class="btn btn-success px-4" href="{% url 'login' %}">Log in</a>
+                    </div>
+                {% endif %}
                 <hr>
             </div>
         </div>
@@ -44,7 +42,7 @@
             {% endfor %}
             </ul>
             {% if user.is_authenticated %}
-            <div class="d-flex justify-content-start align-items-center">
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-start">
                 <a class="btn btn-primary my-3" href="{% url 'core:new_client' %}">Cadastrar novo cliente</a>
             </div>
             {% endif %}

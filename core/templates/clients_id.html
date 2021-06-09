@@ -8,26 +8,24 @@
     <div class="container-fluid py-5">
 
         <div class="row">
-            <div class="d-sm-flex">
-                <div class="col-9">
+            <div class="display-5 fw-bold lh-1 mb-3">
+                <div class="col-lg-7 text-center text-lg-start">
                     <h1 class="display-5 fw-bold">Doc IDs disponíveis</h1>
                 </div>
-                <div class="col-3">
-                    {% if user.is_authenticated %}
-                        <div class="d-flex justify-content-center align-items-center">
-                            <p class="fs-4 m-0"> Olá {{ user.username }} </p>
-                        </div>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a class="btn btn-danger btn-sm mb-2" href="{% url 'logout' %}">Log out</a>
-                        </div>
-                    {% else %}
-                        <div class="alert alert-danger">
-                            <p>Você precisa fazer login para continuar!</p>
-                            <hr>
-                            <a class="btn btn-success m-3" href="{% url 'login' %}">Log in</a>
-                        </div>
-                    {% endif %}
-                </div>
+                {% if user.is_authenticated %}
+                    <div class="col-lg-7 text-center text-lg-start">
+                        <p class="lead"> Olá {{ user.username|capfirst }} </p>
+                    </div>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
+                        <a class="btn btn-danger btn-sm px-4" href="{% url 'logout' %}">Log out</a>
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger">
+                        <p>Você precisa fazer login para continuar!</p>
+                        <hr>
+                        <a class="btn btn-success m-3" href="{% url 'login' %}">Log in</a>
+                    </div>
+                {% endif %}
                 <hr>
             </div>
         </div>
@@ -43,7 +41,7 @@
                         </li>
                     {% endfor %}
                     </ul>
-                    <div class="d-flex justify-content-start align-items-center">
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-start">
                         <div class="btn-group mt-4" role="group">
                             <a class="btn btn-primary my-3" href="{% url 'core:new_id' %}">Cadastrar novo ID</a>
                             <a class="btn btn-secondary my-3" href="{% url 'core:list_clients' %}">Voltar</a>

@@ -7,12 +7,14 @@
 
   <div class="alert alert-success">
     <div class="container-fluid p-5">
-      <h1 class="display-4 fw-bold">Sessão encerrada!</h1>
-      <hr>
-      <p class="col-md-8 fs-4">Log out realizado com sucesso.</p>
-      <p>
-        <a class="btn btn-warning btn-lg m-2" href="{% url 'login' %}"><i class="fa fa-user"></i> Fazer login novamente </a>
-      </p>
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold">Sessão encerrada!</h1>
+        <hr>
+        <p class="col-md-8 fs-4">Log out realizado com sucesso.</p>
+      </div>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-start">
+          <a class="btn btn-outline-primary btn-lg" href="{% url 'login' %}">Fazer login novamente </a>
+      </div>
     </div>
   </div>
     

@@ -9,26 +9,30 @@
 
 <div class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid py-5">
-        {% if update %} 
-            <h1 class="display-5 mb-4 fw-bold">
-                Atualização de {% if form.name %} dados do cliente {% else %} doc ID {% endif %}
-            </h1>
-        {% else %}
-            <h1 class="display-5 mb-4 fw-bold">
-                Novo {% if form.name %} cliente {% else %} doc ID {% endif %}
-            </h1>
-        {% endif %}
+        <div class="col-lg-7 text-center text-lg-start">
+            {% if update %} 
+                <h1 class="display-5 mb-4 fw-bold">
+                    Atualização de {% if form.name %} dados do cliente {% else %} doc ID {% endif %}
+                </h1>
+            {% else %}
+                <h1 class="display-5 mb-4 fw-bold">
+                    Novo {% if form.name %} cliente {% else %} doc ID {% endif %}
+                </h1>
+            {% endif %}
+        </div>
         <form method="POST">
             {% csrf_token %}
             <!-- form.as_p make the form view use paragraphs, it will be shown verticaly -->
             {{ form|bootstrap }}
-            <div class="btn-group mt-4" role="group">
-                <button type="submit" class="btn btn-success">Salvar</button>
-                {% if form.name %}
-                        <a class="btn btn-danger" href="{% url 'core:list_clients' %}">Cancelar</a>
-                {% else %}
-                        <a class="btn btn-danger" href="{% url 'core:list_id' %}">Cancelar</a>
-                {% endif %}
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-start">
+                <div class="btn-group mt-4" role="group">
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                    {% if form.name %}
+                            <a class="btn btn-danger" href="{% url 'core:list_clients' %}">Cancelar</a>
+                    {% else %}
+                            <a class="btn btn-danger" href="{% url 'core:list_id' %}">Cancelar</a>
+                    {% endif %}
+                </div>
             </div>
         </form>
     </div>
