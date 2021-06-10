@@ -31,6 +31,6 @@ urlpatterns = [
     # -> o django ja sabe que e uma view
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
-# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # -> Return a URL pattern for serving files in debug mode
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Return a URL pattern for serving files in debug mode
 # dessa forma esta-se concatenando as urls existentes, novas url'patterns'
 # dos arquivos estaticos, nesse caso
