@@ -1,5 +1,5 @@
 ![workflow name](https://github.com/italopinto/full-django-course/actions/workflows/main.yml/badge.svg)
-![workflow name](https://github.com/italopinto/full-django-course/actions/workflows/formating.yml/badge.svg)
+![workflow name](https://github.com/italopinto/full-django-course/actions/workflows/format.yml/badge.svg)
 
 
 # full-django-course
