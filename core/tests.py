@@ -1,5 +1,6 @@
 from django.test import TestCase
-from django.urls import reverse 
+from django.urls import reverse
+
 
 class TestClientViews(TestCase):
 
@@ -22,4 +23,3 @@ class TestClientViews(TestCase):
         """Test the response of the client delete view"""
         response = self.client.get(reverse('core:delete_client', args=[1]))
         self.assertEqual(response.status_code, 302)
-

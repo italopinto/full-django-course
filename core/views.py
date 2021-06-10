@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Client, ID
 from .forms import ClientForm, IdForm
-from django.contrib.auth.decorators import login_required #-> para limitar o acesso a certas views a usuarios com sessoes logadas
+# -> para limitar o acesso a certas views a usuarios com sessoes logadas
+from django.contrib.auth.decorators import login_required
 
 
 # Client's views
@@ -33,7 +34,11 @@ def list_clients(request):
 @login_required
 def update_client(request, id):
     client = get_object_or_404(Client, pk=id)
-    form = ClientForm(request.POST or None, request.FILES or None, instance=client) #-> criara o form com informacoes predefinidas o client
+    # -> criara o form com informacoes predefinidas o client
+    form = ClientForm(
+        request.POST or None,
+        request.FILES or None,
+        instance=client)
 
     if form.is_valid():
         form.save()
@@ -51,14 +56,15 @@ def update_client(request, id):
 def delete_client(request, id):
     client = get_object_or_404(Client, pk=id)
 
-    if request.method == 'POST': #->so caira aqui quando clicar em apagar que mandara um post aqui
+    if request.method == 'POST':  # ->so caira aqui quando clicar em apagar que mandara um post aqui
         client.delete()
         return redirect('core:list_clients')
 
     context = {
         'client': client,
     }
-    return render(request, 'confirm.html', context=context)#-> so chega aqui com metodo get pois e apenas uma requisicao
+    # -> so chega aqui com metodo get pois e apenas uma requisicao
+    return render(request, 'confirm.html', context=context)
 
 
 # Id's views
@@ -117,4 +123,3 @@ def delete_id(request, id):
         'id': doc_id,
     }
     return render(request, 'confirm.html', context=context)
-

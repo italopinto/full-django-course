@@ -58,7 +58,7 @@ ROOT_URLCONF = 'clients.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['mytemplates',],
+        'DIRS': ['mytemplates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +79,11 @@ WSGI_APPLICATION = 'clients.wsgi.application'
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl)} #tentara ir atras de um senao o usa o outro
+DATABASES = {
+    'default': config(
+        'DATABASE_URL',
+        default=default_dburl,
+        cast=dburl)}  # tentara ir atras de um senao o usa o outro
 
 
 # Password validation
@@ -139,8 +143,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# settings of login url and login redirect, the values must be the same as urls because will be used reverse
-LOGIN_URL = 'login' #-> overriding the default login url from django, make sure to use the same name used in the url
+# settings of login url and login redirect, the values must be the same as
+# urls because will be used reverse
+# -> overriding the default login url from django, make sure to use the same name used in the url
+LOGIN_URL = 'login'
 
-LOGIN_REDIRECT_URL = 'core:list_clients' #-> where should django redirect the user after the login
-
+# -> where should django redirect the user after the login
+LOGIN_REDIRECT_URL = 'core:list_clients'

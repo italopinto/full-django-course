@@ -18,4 +18,3 @@ admin.site.register(Client, ClientAdmin)
 admin.site.register(ID)
 admin.site.register(Sale, SaleAdmin)
 admin.site.register(Product)
-

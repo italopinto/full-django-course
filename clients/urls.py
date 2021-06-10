@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth import views as auth_views #-> views de autenticacao, login e logout, para funcionarem faça os htmls
+# -> views de autenticacao, login e logout, para funcionarem faça os htmls
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
 # para o django servir imagens (static files) em debug mode
@@ -27,7 +28,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'), #-> o django ja sabe que e uma view
-] 
+    # -> o django ja sabe que e uma view
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+]
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # -> Return a URL pattern for serving files in debug mode
-# dessa forma esta-se concatenando as urls existentes, novas url'patterns' dos arquivos estaticos, nesse caso
+# dessa forma esta-se concatenando as urls existentes, novas url'patterns'
+# dos arquivos estaticos, nesse caso
