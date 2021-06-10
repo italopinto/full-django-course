@@ -1,0 +1,21 @@
+name: PEP8
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: 'Run PEP8'
+      uses: quentinguidee/pep8-action@v1
