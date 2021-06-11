@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'core',
     'bootstrapform',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -118,24 +119,37 @@ USE_L10N = True
 
 USE_TZ = True
 
+# AWS S3 configs
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.sa-east-1.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400'
+}
+AWS_LOCATION = 'static'
+AWS_DEFAULT_ACL = None
+# To avoid equals image names override eachother
+AWS_S3_FILE_OVERWRITE = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-# this one is to find the static folder in the app folder
-STATIC_URL = '/static/'
-
+# this one is to find the static files of the project
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+# To allow django-admin collectstatic to automatically put your static files
+# in your bucket set the following:
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+# To upload your media files to S3 set:
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # this one is to list other places to django try to find the statics files
-STATICFILES_DIRS = [
-    BASE_DIR / "mystatic",
-]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'mystatic')
 
 # Media files
-MEDIA_URL = "/media/"
-
-MEDIA_ROOT = BASE_DIR / "media"
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mymedia')
 
 
 # Default primary key field type
