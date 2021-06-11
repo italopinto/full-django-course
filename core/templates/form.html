@@ -20,7 +20,8 @@
                 </h1>
             {% endif %}
         </div>
-        <form method="POST">
+        <!-- <form> that posted the request must have the attribute enctype="multipart/form-data". Otherwise, request.FILES will be empty. -->
+        <form method="post" action="" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- form.as_p make the form view use paragraphs, it will be shown verticaly -->
             {{ form|bootstrap }}
