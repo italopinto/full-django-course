@@ -9,11 +9,13 @@ from django.contrib.auth.decorators import login_required
 # C: Create
 @login_required
 def new_client(request):
-    form = ClientForm(request.POST or None, request.FILES or None)
+    form = ClientForm()
 
-    if form.is_valid():
-        form.save()
-        return redirect('core:list_clients')
+    if request.method == 'POST':
+        form = ClientForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('core:list_clients')
 
     context = {
         'form': form,
@@ -34,11 +36,8 @@ def list_clients(request):
 @login_required
 def update_client(request, id):
     client = get_object_or_404(Client, pk=id)
-    # -> criara o form com informacoes predefinidas o client
-    form = ClientForm(
-        request.POST or None,
-        request.FILES or None,
-        instance=client)
+    # criara o form com informacoes predefinidas o client
+    form = ClientForm(request.POST or None, request.FILES or None, instance=client)
 
     if form.is_valid():
         form.save()
