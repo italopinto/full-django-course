@@ -27,7 +27,7 @@ class Client(models.Model):
         verbose_name='Fotos',
         null=True,
         blank=True,
-        upload_to='clients')
+        upload_to='media/')
     dt_birth = models.DateField(
         verbose_name='Data de nascimento',
         null=True,
