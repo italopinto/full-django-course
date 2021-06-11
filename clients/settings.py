@@ -127,29 +127,19 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.sa-east-1.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400'
 }
-AWS_LOCATION = 'static'
 AWS_DEFAULT_ACL = None
+# False to remove query parameter authentication from generated URLs.
+# This can be useful if your S3 buckets are public.
+AWS_QUERYSTRING_AUTH = False
 # To avoid equals image names override eachother
 AWS_S3_FILE_OVERWRITE = False
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-# this one is to find the static files of the project
+# s3 static settings
+AWS_LOCATION = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-# To allow django-admin collectstatic to automatically put your static files
-# in your bucket set the following:
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-# To upload your media files to S3 set:
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# s3 public media settings
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# this one is to list other places to django try to find the statics files
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'mystatic')
-
-# Media files
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mymedia')
 
 
 # Default primary key field type
